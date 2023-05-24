@@ -7,7 +7,7 @@
 void execute_userInput(char *userInput)
 {
 	/* These variables are used for tokenizing the user input and storing the program path and arguments.*/
-	char *tokens, *argv[int MAX_LEN];
+	char *tokens, *argv[100];
 	int tokenCount = 0; /* tokenCount keeps track of the number of tokens*/
 	int status; /* status is used to store the exit status of the child process.*/
 	pid_t pid;
@@ -15,7 +15,7 @@ void execute_userInput(char *userInput)
 	/* tokenize the user input to get the program path and the arguments */
 	tokens = strtok(userInput, " ");
 
-	while (tokens != NULL && tokenCount < MAX_LEN - 1)
+	while (tokens != NULL && tokenCount < 100 - 1)
 	{
 		argv[tokenCount] = tokens;
 		tokenCount++;
