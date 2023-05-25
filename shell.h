@@ -113,7 +113,7 @@ char **_getenv(const char *var);
 void free_env(void);
 char **_copyenv(void);
 
-int proc_file_commands(char *file_path, int *exe_ret);
+int file_commands(char *file_path, int *exe_ret);
 
 alias_t *add_alias_end(alias_t **head, char *name, char *value);
 list_t *add_node_end(list_t **head, char *dir);
