@@ -1,28 +1,28 @@
 #include "shell.h"
 
 /**
- * cant_open - when the file doesn't exist or lacks proper permissions, print
- * a cant open error.
- * @file_path: Path to the supposed file.
+ * cant_open - if file doesn't exist or lacks proper permissions
+ * a cant open error.0
+ * @file_path: Path to supposed file in the shell.
  *
- * Return: 127.
+ * Return: 130.
  */
 
 int cant_open(char *file_path)
 {
 	char *error, *hist_str;
-	int len;
+	int length;
 
 	hist_str = _itoa(hist);
 	if (!hist_str)
-		return (127);
+		return (130);
 
-	len = _strlen(name) + _strlen(hist_str) + _strlen(file_path) + 16;
-	error = malloc(sizeof(char) * (len + 1));
+	length = _strlen(name) + _strlen(hist_str) + _strlen(file_path) + 16;
+	error = malloc(sizeof(char) * (length + 1));
 	if (!error)
 	{
 		free(hist_str);
-		return (127);
+		return (130);
 	}
 
 	_strcpy(error, name);
@@ -33,20 +33,19 @@ int cant_open(char *file_path)
 	_strcat(error, "\n");
 
 	free(hist_str);
-	write(STDERR_FILENO, error, len);
+	write(STDERR_FILENO, error, length);
 	free(error);
-	return (127);
+	return (130);
 }
 
 /**
- * proc_file_commands -This Takes a file and attempts to run the commands stored
- * within.
- * @file_path: Path to the file.
- * @exe_ret: Return value of the last executed command.
+ * file_commands - Takes a file and run the commands stored
+ * @file_path: Path to file location
+ * @exe_ret: Return value of last executed command file.
  *
- * Return: If file couldn't be opened - 127.
+ * Return: If file couldn't be opened - 130.
  *	   If malloc fails - -1.
- *	   Otherwise the return value of the last command ran.
+ *	   Otherwise the return value of last command line.
  */
 int file_commands(char *file_path, int *exe_ret)
 {
