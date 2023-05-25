@@ -1,11 +1,11 @@
 #include "shell.h"
 
 /**
- * get_args - function that gets a command from standard input
- * @line: buffer to store the command
- * @exe_ret: return value of last command executed
+ * get_args - gets a command from standard input
+ * @line: buffer to temporary store the command
+ * @exe_ret: return value of the last command
  *
- * Return: NULL if an error occurs or, a pointer
+ * Return: NULL if an error or, a pointer pointing
  * to the stored command if otherwise
  */
 char *get_args(char *line, int *exe_ret)
@@ -36,10 +36,10 @@ char *get_args(char *line, int *exe_ret)
 }
 
 /**
- * call_args - function that partitions operators from commands
- * @args: array of arguments
- * @front: double pointer to beginning of args
- * @exe_ret: return value of parent process last executed command
+ * call_args - partitions operators from commands
+ * @args: argument array
+ * @front: double pointer pointing to beginning of args
+ * @exe_ret: return value of parent process of last executed command
  *
  * Return: return value of the last executed command
  */
@@ -94,10 +94,10 @@ int call_args(char **args, char **front, int *exe_ret)
 }
 
 /**
- * run_args - function that calls the execution of a command
- * @args: array of arguments
- * @front: double pointer to beginning of args
- * @exe_ret: return value of parent process last executed command
+ * run_args - calls the execution of a command
+ * @args: argument of array
+ * @front: double pointer pointing to beginning of args
+ * @exe_ret: return value of parent process of last executed command
  *
  * Return: return value of the last executed command
  */
@@ -129,14 +129,12 @@ int run_args(char **args, char **front, int *exe_ret)
 }
 
 /**
- * handle_args - function that gets, calls, and
- * runs the execution of command
- * @exe_ret: return value of the parent process
+ * handle_args - function gets, calls, and
+ * runs the execution of command line
+ * @exe_ret: return value of parent process
  * last executed command
- *
  * Return: END_OF_FILE (-2) if an end-of-file is read
- * and -1 If the input cannot be tokenized or the
- * exit value of the last executed command if otherwise
+ * exit value of the last executed command otherwise
  */
 int handle_args(int *exe_ret)
 {
@@ -178,12 +176,12 @@ int handle_args(int *exe_ret)
 }
 
 /**
- * check_args - function that checks if there are
+ * check_args - checks if there are
  * any leading ';', ';;', '&&', or '||'
- * @args: 2D pointer to tokenized commands and arguments
+ * @args: 2D pointer pointing to tokenized commands and arguments
  *
- * Return: 2 if a ';', '&&', or '||' is placed at an
- * invalid position or  0 if Otherwise
+ * Return: 2 if a ';', '&&', or '||' is placed at
+ * invalid position or  0 Otherwise
  */
 int check_args(char **args)
 {
