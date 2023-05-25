@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * shellby_alias - Builtin command that either prints all aliases, specific

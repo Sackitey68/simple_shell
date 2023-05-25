@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 /**
  * get_location - funcion that locates a command in the PATH
  * @command: command to be located

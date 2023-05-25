@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * error_env - a function that creates an error

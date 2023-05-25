@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * cant_open - when the file doesn't exist or lacks proper permissions, print

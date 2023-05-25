@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * sig_handler - function that Prints a new
