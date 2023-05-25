@@ -1,10 +1,9 @@
 #include "shell.h"
 
 /**
- * _copyenv - a function that creates a copy of the environment
- *
- * Return: If an error occur return NULL or
- * a double pointer to the new copy if otherwise
+ * _copyenv - function creates  copy of the environment
+ * Return: If error return NULL or a double pointer
+ * pointing to new copy otherwise
  */
 char **_copyenv(void)
 {
@@ -38,7 +37,8 @@ char **_copyenv(void)
 }
 
 /**
- * free_env - function that frees the copy of the environment
+ * free_env - function frees the memory allocated for copied environment
+ * it frees the memory allocated for the environ array itself
  */
 void free_env(void)
 {
@@ -50,20 +50,19 @@ void free_env(void)
 }
 
 /**
- * _getenv - function that gets an environmental variable from the PATH
- * @var:the environmental variable name
- *
- * Return: NULL If the environmental variable does not exist, or
- * a pointer to the environmental variable if otherwise
+ * _getenv - gets the environmental variable from the PATH
+ * @var: name of environmental variable
+ * Return: NULL If environmental variable does not exist, or
+ * a pointer pointing to environmental variable if otherwise
  */
 char **_getenv(const char *var)
 {
-	int index, len;
+	int index, length;
 
-	len = _strlen(var);
+	length = _strlen(var);
 	for (index = 0; environ[index]; index++)
 	{
-		if (_strncmp(var, environ[index], len) == 0)
+		if (_strncmp(var, environ[index], length) == 0)
 			return (&environ[index]);
 	}
 
