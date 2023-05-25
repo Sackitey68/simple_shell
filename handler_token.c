@@ -1,48 +1,46 @@
 #include "shell.h"
 
 /**
- * token_len - function that loocates the delimiter
+ * token_len - function takes a string and a delimiter character input.
  * index marking the end of the first token
- * @str: the string that will be searched
- * @delim: delimiter character
+ * @str: the searched string
+ * @delim: delimiter input character
  *
- * Return: delimiter index marking the end of
- * intitial token pointed to be str
+ * Return: index delimiter indicating end of
+ * intitial token pointing to str
  */
 int token_len(char *str, char *delim)
 {
-	int index = 0, len = 0;
+	int index = 0, length = 0;
 
 	while (*(str + index) && *(str + index) != *delim)
 	{
-		len++;
-		index++;
+		length = length + 1;
+		index = index + 1;
 	}
 
-	return (len);
+	return (length);
 }
 
 /**
- * count_tokens - function that counts the number of
- * delimited words contained in a string
- * @str: string to be searched
+ * count_tokens - counts the number of delimited words in a string
+ * @str: searched string
  * @delim: delimiter character
- *
- * Return: total counts of words contained within str
+ * Return: total words counts contained within str
  */
 int count_tokens(char *str, char *delim)
 {
-	int index, tokens = 0, len = 0;
+	int index, tokens = 0, length = 0;
 
 	for (index = 0; *(str + index); index++)
-		len++;
+		length = length + 1;
 
-	for (index = 0; index < len; index++)
+	for (index = 0; index < length; index++)
 	{
 		if (*(str + index) != *delim)
 		{
-			tokens++;
-			index += token_len(str + index, delim);
+			tokens = tokens + 1;
+			index = index + token_len(str + index, delim);
 		}
 	}
 
@@ -50,16 +48,15 @@ int count_tokens(char *str, char *delim)
 }
 
 /**
- * _strtok - function that tokenizes a string
- * @line: the string
- * @delim: delimiter character to tokenize the string
- *
- * Return: pointer to array containing tokenized words
+ * _strtok - this function tokenizes a string
+ * @line: concerned string
+ * @delim: delimiter character tokenizes the string
+ * Return: pointer to array that contains tokenized words
  */
 char **_strtok(char *line, char *delim)
 {
 	char **ptr;
-	int index = 0, tokens, k, letters, l;
+	int index = 0, tokens, x, characters, y;
 
 	tokens = count_tokens(line, delim);
 	if (tokens == 0)
@@ -69,15 +66,15 @@ char **_strtok(char *line, char *delim)
 	if (!ptr)
 		return (NULL);
 
-	for (k = 0; k < tokens; k++)
+	for (x = 0; x < tokens; x++)
 	{
 		while (line[index] == *delim)
-			index++;
+			index = index + 1;
 
-		letters = token_len(line + index, delim);
+		characters = token_len(line + index, delim);
 
-		ptr[k] = malloc(sizeof(char) * (letters + 1));
-		if (!ptr[k])
+		ptr[x] = malloc(sizeof(char) * (characters + 1));
+		if (!ptr[x])
 		{
 			for (index -= 1; index >= 0; index--)
 				free(ptr[index]);
@@ -85,16 +82,16 @@ char **_strtok(char *line, char *delim)
 			return (NULL);
 		}
 
-		for (l = 0; l < letters; l++)
+		for (y = 0; y < characters; y++)
 		{
-			ptr[k][l] = line[index];
+			ptr[x][y] = line[index];
 			index++;
 		}
 
-		ptr[k][l] = '\0';
+		ptr[x][y] = '\0';
 	}
-	ptr[k] = NULL;
-	ptr[k + 1] = NULL;
+	ptr[x] = NULL;
+	ptr[x + 1] = NULL;
 
 	return (ptr);
 }
