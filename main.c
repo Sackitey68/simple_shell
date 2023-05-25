@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * sig_handler - function that Prints a new
- * prompt upon receiving a signal
- * @sig: The signal received
+ * sig_handler - function Prints a new
+ * prompt upon a signal is recieved
+ * @sig: signal received from user
  *
  * Return: void
  */
@@ -17,15 +17,11 @@ void sig_handler(int sig)
 }
 
 /**
- * execute - function that executes a command
- * in a child process
- * @args: array of arguments
- * @front: double pointer to the beginning
- * of the arguments
- *
- * Return: an error code if an error occurs, or
- * the exit value of the last command
- * executed if otherwise
+ * execute - executes a command in child process
+ * @args: array that takes arguments
+ * @front: pointer to beginning of the arguments
+ * Return: error code if an error occured, or
+ * exit value of last command line
  */
 int execute(char **args, char **front)
 {
@@ -78,12 +74,12 @@ int execute(char **args, char **front)
 }
 
 /**
- * main - function that runs simple
- * UNIX command interpreter
- * @argc: number of arguments provided
- * @argv: array of pointers to the arguments passed
+ * main - function to run simple
+ * UNIX shell interpreter
+ * @argc: provide number of arguments
+ * @argv: array of pointers to arguments passed
  *
- * Return: value of the last executed command
+ * Return: value of last executed command line
  */
 int main(int argc, char *argv[])
 {
