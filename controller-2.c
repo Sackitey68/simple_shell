@@ -1,53 +1,50 @@
 #include "shell.h"
 
 /**
- * num_len - function that counts the digital
- * length of a number
- * @num: The number to be measured
- *
- * Return: the digital lenghth
+ * num_len - function calculates the length of number in terms of digits.
+ * @num: Measured number
+ * Return: the length of the digits
  */
 int num_len(int num)
 {
-	unsigned int num1;
-	int len = 1;
+	unsigned int number1;
+	int length = 1;
 
 	if (num < 0)
 	{
-		len++;
-		num1 = num * -1;
+		length = length + 1;
+		number1 = num * -1;
 	}
 	else
 	{
-		num1 = num;
+		number1 = num;
 	}
-	while (num1 > 9)
+	while (number1 > 9)
 	{
-		len++;
-		num1 /= 10;
+		length = length + 1;
+		number1 /= 10;
 	}
 
-	return (len);
+	return (length);
 }
 
 /**
- * _itoa - function that converts an
- * integer to a string
- * @num: the integer to be converted
- *
- * Return: converted string
+ * _itoa - function that converts integer
+ * into string representation
+ * @num: the integer to converte into string
+ * Return: converted string representation
  */
 char *_itoa(int num)
 {
 	char *buffer;
-	int len = num_len(num);
+	int length = num_len(num);
 	unsigned int num1;
 
-	buffer = malloc(sizeof(char) * (len + 1));
+	buffer = malloc(sizeof(char) * (length + 1));
 	if (!buffer)
 		return (NULL);
 
-	buffer[len] = '\0';
+	buffer[length] = '\0';
 
 	if (num < 0)
 	{
@@ -59,11 +56,11 @@ char *_itoa(int num)
 		num1 = num;
 	}
 
-	len--;
+	length = length - 1;
 	do {
-		buffer[len] = (num1 % 10) + '0';
+		buffer[length] = (num1 % 10) + '0';
 		num1 /= 10;
-		len--;
+		length = length - 1;
 	} while (num1 > 0);
 
 	return (buffer);
@@ -71,11 +68,10 @@ char *_itoa(int num)
 
 
 /**
- * create_error - function that Writes a custom
- * error message
- * @args: array of arguments
- * @err: value of the error
- *
+ * create_error - This function Writes custom
+ *  message based on the given error code
+ * @args: array with arguments
+ * @err: error value
  * Return: the error value
  */
 int create_error(char **args, int err)
