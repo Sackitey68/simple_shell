@@ -104,7 +104,7 @@ char *fill_path_dir(char *path)
  */
 list_t *get_path_dir(char *path)
 {
-	int index;
+	int marks;
 	char **dirs, *path_copy;
 	list_t *head = NULL;
 
@@ -116,9 +116,9 @@ list_t *get_path_dir(char *path)
 	if (!dirs)
 		return (NULL);
 
-	for (index = 0; dirs[index]; index++)
+	for (marks = 0; dirs[marks]; marks++)
 	{
-		if (add_node_end(&head, dirs[index]) == NULL)
+		if (add_node_end(&head, dirs[marks]) == NULL)
 		{
 			free_list(head);
 			free(dirs);
