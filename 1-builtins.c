@@ -1,11 +1,10 @@
 #include "shell.h"
 
 /**
- * get_builtin -This  Matches a command with a corresponding
- * shellby builtin function
- * @command: The command to match
- *
- * Return: A function pointer to the corresponding builtin.
+ * get_builtin - This function match corresponding command
+ * shellby builtin is a function
+ * @command: match command
+ * Return: A function pointer pointing to similar  builtin.
  */
 int (*get_builtin(char *command))(char **args, char **front)
 {
@@ -19,44 +18,41 @@ int (*get_builtin(char *command))(char **args, char **front)
 		{ "help", shellby_help },
 		{ NULL, NULL }
 	};
-	int m;
+	int s1;
 
-	for (m = 0; funcs[m].name; m++)
+	for (s1 = 0; funcs[s1].name; s1++)
 	{
 		if (_strcmp(funcs[m].name, command) == 0)
 			break;
 	}
-	return (funcs[m].f);
+	return (funcs[s1].f);
 }
 
 /**
- * shellby_exit - Causes normal process termination
- * for the shellby shell.
- * @args: An array of arguments containing the exit value.
- * @front: A double pointer to the beginning of args.
- *
- * Return: If there are no arguments - -3.
- *         If the given exit value is invalid - 2.
- *         O/w - exits with the given status value.
- *
- * Description: Upon returning -3, the program exits back in the main function.
+ * shellby_exit - terminate normal process
+ * @args: An array of arguments contained in exit value.
+ * @front: A double pointer pointing to beginning of args.
+ * Return: If no arguments is found - -3.
+ *         If exit value is invalid - 2.
+ *         O/w - exits with  given status value.
+ * Description: when returning -3,
  */
 int shellby_exit(char **args, char **front)
 {
-	int m, len_of_int = 10;
+	int s1, intLength = 10;
 	unsigned int num = 0, max = 1 << (sizeof(int) * 8 - 1);
 
 	if (args[0])
 	{
 		if (args[0][0] == '+')
 		{
-			m = 1;
-			len_of_int++;
+			s1 = 1;
+			intLength = intLength + 1;
 		}
-		for (; args[0][m]; m++)
+		for (; args[0][s1]; s1++)
 		{
-			if (m <= len_of_int && args[0][m] >= '0' && args[0][m] <= '9')
-				num = (num * 10) + (args[0][m] - '0');
+			if (s1 <= intLength && args[0][s1] >= '0' && args[0][s1] <= '9')
+				num = (num * 10) + (args[0][s1] - '0');
 			else
 				return (create_error(--args, 2));
 		}
@@ -75,13 +71,11 @@ int shellby_exit(char **args, char **front)
 }
 
 /**
- * shellby_cd - Changes the current directory of the shellby process.
  * @args:This takes an array of arguments.
- * @front: A double pointer to the beginning of args.
- *
- * Return: If the given string is not a directory - 2.
+ * @front: A double pointer pointing to beginning of args.
+ * Return: If string is not directory - 2.
  *         If an error occurs - -1.
- *         Otherwise - 0.
+ *         else - 0.
  */
 int shellby_cd(char **args, char __attribute__((__unused__)) **front)
 {
@@ -156,12 +150,10 @@ int shellby_cd(char **args, char __attribute__((__unused__)) **front)
 }
 
 /**
- * shellby_help - Displays information about shellby builtin commands.
- * @args: An array of arguments.
- * @front: A pointer to the beginning of args.
- *
- * Return: If an error occurs - -1.
- *         Otherwise - 0.
+ * shellby_help - displays content about shellby builtin command.
+ * @front: A pointer points to beginning of args.
+ * Return: If error occurs -1.
+ *        else - 0.
  */
 int shellby_help(char **args, char __attribute__((__unused__)) **front)
 {
