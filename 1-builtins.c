@@ -22,7 +22,7 @@ int (*get_builtin(char *command))(char **args, char **front)
 
 	for (s1 = 0; funcs[s1].name; s1++)
 	{
-		if (_strcmp(funcs[m].name, command) == 0)
+		if (_strcmp(funcs[s1].name, command) == 0)
 			break;
 	}
 	return (funcs[s1].f);
